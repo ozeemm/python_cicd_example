@@ -1,10 +1,6 @@
 pipeline{
     agent any
 
-    environment{
-        JAVA_TOOL_OPTIONS = '-Dfile.encoding=UTF-8'
-    }
-
     stages{
         stage('Checkout') {
             steps {
@@ -15,6 +11,7 @@ pipeline{
         stage('Setup Virtual Environment') {
             steps {
                 bat '''
+                    chcp 65001
                     python -m venv .venv
                     ./.venv/Scripts/python -m pip install --upgrade pip
                 '''
