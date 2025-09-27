@@ -29,9 +29,9 @@ pipeline{
             }
         }
 
-        stage('Test') {
+        stage('Tests') {
             steps {
-                bat '.venv\\Scripts\\python -m pytest tests'
+                bat '.venv\\Scripts\\python -m pytest tests.py'
             }
         }
 
