@@ -10,10 +10,9 @@ pipeline{
 
         stage('Setup Virtual Environment') {
             steps {
-                bat '''
-                    chcp 65001
+                powershell  '''
                     python -m venv .venv
-                    ./.venv/Scripts/python -m pip install --upgrade pip
+                    .venv\\Scripts\\python -m pip install --upgrade pip
                 '''
             }
         }
@@ -21,7 +20,7 @@ pipeline{
         stage('Install Dependencies') {
             steps {
                 bat '''
-                    ./.venv/Scripts/pip install -r requirements.txt
+                    .venv\\Scripts\\pip install -r requirements.txt
                 '''
             }
         }
