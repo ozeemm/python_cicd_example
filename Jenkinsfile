@@ -10,7 +10,7 @@ pipeline{
 
         stage('Setup Virtual Environment') {
             steps {
-                powershell  '''
+                bat  '''
                     python -m venv .venv
                     .venv\\Scripts\\python -m pip install --upgrade pip
                 '''
@@ -19,19 +19,19 @@ pipeline{
         
         stage('Install Dependencies') {
             steps {
-                powershell '.venv\\Scripts\\pip install -r requirements.txt'     
+                bat '.venv\\Scripts\\pip install -r requirements.txt'
             }
         }
 
         stage('Lint') {
             steps {
-                powershell '.venv\\Scripts\\pylint *.py'
+                bat '.venv\\Scripts\\pylint *.py'
             }
         }
 
         stage('Test') {
             steps {
-                powershell '.venv\\Scripts\\python -m pytest tests'
+                bat '.venv\\Scripts\\python -m pytest tests'
             }
         }
 
