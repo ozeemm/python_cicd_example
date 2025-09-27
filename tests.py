@@ -1,4 +1,5 @@
-import pytest
+"""Tests"""
 
-def test_True():
+def test_true():
+    """Always true test"""
     assert True
