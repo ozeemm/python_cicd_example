@@ -1,20 +1,27 @@
 pipeline{
     agent any
 
-    tools {
-        python "Python39"
-    }
-
     stages{
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
+
+        stage('Setup Virtual Environment') {
+            steps {
+                powershell  '''
+                    python -m venv .venv
+                    .venv\\Scripts\\python -m pip install --upgrade pip
+                '''
+            }
+        }
         
         stage('Install Dependencies') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat '''
+                    .venv\\Scripts\\pip install -r requirements.txt
+                '''
             }
         }
 
