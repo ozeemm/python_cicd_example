@@ -1,5 +1,2 @@
-"""Tests"""
-
-def test_true():
-    """Always true test"""
+def testTrue():
     assert True

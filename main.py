@@ -1,3 +1,1 @@
-"""Main"""
-
 print("Hello, World")
