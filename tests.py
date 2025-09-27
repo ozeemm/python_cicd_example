@@ -5,5 +5,9 @@ def test_true():
     assert True
 
 def test_2_plus_2():
-    """False test"""
+    """2+2 test"""
     assert 2 + 2 == 4
+
+def test_1_plus_1():
+    """1+1 test"""
+    assert 1 + 1 == 2
