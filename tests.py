@@ -11,3 +11,7 @@ def test_2_plus_2():
 def test_1_plus_1():
     """1+1 test"""
     assert 1 + 1 == 2
+
+def test_str_len():
+    """string len"""
+    assert len('len') == 3
