@@ -11,9 +11,8 @@ pipeline{
         stage('Setup Virtual Environment') {
             steps {
                 bat '''
-                    python -m venv venv
-                    . venv/Scripts/activate.exe
-                    pip install --upgrade pip
+                    python -m venv .venv
+                    .venv/Scripts/pip install --upgrade pip
                 '''
             }
         }
@@ -21,21 +20,20 @@ pipeline{
         stage('Install Dependencies') {
             steps {
                 bat '''
-                    . venv/Scripts/activate.exe
-                    pip install -r requirements.txt
+                    .venv/Scripts/pip install -r requirements.txt
                 '''
             }
         }
 
         stage('Lint') {
             steps {
-                bat 'pylint *.py'
+                bat '.venv/Scripts/pylint *.py'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'python -m pytest tests/'
+                bat '.venv/Scripts/python -m pytest tests'
             }
         }
 
