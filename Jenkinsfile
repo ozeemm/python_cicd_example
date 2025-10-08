@@ -10,30 +10,29 @@ pipeline{
 
         stage('Setup Virtual Environment') {
             steps {
-                bat  '''
-                    python -m venv .venv
-                    .venv\\Scripts\\python -m pip install --upgrade pip
+                sh '''
+                    python3 -m venv .venv
+                    .venv/bin/python -m pip install --upgrade pip
                 '''
             }
         }
         
         stage('Install Dependencies') {
             steps {
-                bat '.venv\\Scripts\\pip install -r requirements.txt'
+                sh '.venv/bin/pip install -r requirements.txt'
             }
         }
 
         stage('Lint') {
             steps {
-                bat '.venv\\Scripts\\pylint *.py'
+                sh '.venv/bin/pylint *.py'
             }
         }
 
         stage('Tests') {
             steps {
-                bat '.venv\\Scripts\\python -m pytest tests.py'
+                sh '.venv/bin/python -m pytest tests.py'
             }
         }
-
     }
 }
