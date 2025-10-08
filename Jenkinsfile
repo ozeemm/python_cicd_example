@@ -16,7 +16,7 @@ pipeline{
             steps {
                 sh "
                     python3 -m venv .venv
-                    source ${ACTIVATE_VENV_PATH}
+                    . ${ACTIVATE_VENV_PATH}
                     pip install --upgrade pip
                 "
             }
@@ -25,7 +25,7 @@ pipeline{
         stage('Install Dependencies') {
             steps {
                 sh "
-                    source ${ACTIVATE_VENV_PATH}
+                    . ${ACTIVATE_VENV_PATH}
                     pip install -r requirements.txt
                 "
             }
@@ -34,7 +34,7 @@ pipeline{
         stage('Lint') {
             steps {
                 sh "
-                    source ${ACTIVATE_VENV_PATH}
+                    . ${ACTIVATE_VENV_PATH}
                     pylint *.py
                 "
             }
@@ -43,7 +43,7 @@ pipeline{
         stage('Tests') {
             steps {
                 sh "
-                    source ${ACTIVATE_VENV_PATH}
+                    . ${ACTIVATE_VENV_PATH}
                     pytest tests.py
                 "
             }
@@ -52,7 +52,7 @@ pipeline{
         stage('Run'){
             steps {
                 sh "
-                    source ${ACTIVATE_VENV_PATH}
+                    . ${ACTIVATE_VENV_PATH}
                     python main.py
                 "
             }
