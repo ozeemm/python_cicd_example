@@ -14,47 +14,47 @@ pipeline{
 
         stage('Setup Virtual Environment') {
             steps {
-                sh '''
+                sh "
                     python3 -m venv .venv
                     source ${ACTIVATE_VENV_PATH}
                     pip install --upgrade pip
-                '''
+                "
             }
         }
         
         stage('Install Dependencies') {
             steps {
-                sh '''
+                sh "
                     source ${ACTIVATE_VENV_PATH}
                     pip install -r requirements.txt
-                '''
+                "
             }
         }
 
         stage('Lint') {
             steps {
-                sh '''
+                sh "
                     source ${ACTIVATE_VENV_PATH}
                     pylint *.py
-                '''
+                "
             }
         }
 
         stage('Tests') {
             steps {
-                sh '''
+                sh "
                     source ${ACTIVATE_VENV_PATH}
                     pytest tests.py
-                '''
+                "
             }
         }
 
         stage('Run'){
             steps {
-                sh '''
+                sh "
                     source ${ACTIVATE_VENV_PATH}
                     python main.py
-                '''
+                "
             }
         }
     }
