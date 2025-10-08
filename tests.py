@@ -23,7 +23,3 @@ def test_str_len():
 def test_str_plus():
     """1+1 str test"""
     assert '1' + '1' == '11'
-
-def test_true_is_true():
-    """true == true test"""
-    assert True == True
