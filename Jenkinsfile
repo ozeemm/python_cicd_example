@@ -34,5 +34,11 @@ pipeline{
                 sh '.venv/bin/python -m pytest tests.py'
             }
         }
+
+        stage('Run'){
+            steps {
+                sh '.venv/bin/python -m main.py'
+            }
+        }
     }
 }
