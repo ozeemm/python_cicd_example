@@ -1,10 +1,6 @@
 pipeline{
     agent any
 
-    environment {
-        ACTIVATE_VENV_PATH = '.venv/bin/activate'
-    }
-
     stages{
         stage('Checkout') {
             steps {
@@ -14,47 +10,47 @@ pipeline{
 
         stage('Setup Virtual Environment') {
             steps {
-                sh "
+                sh '''
                     python3 -m venv .venv
-                    . ${ACTIVATE_VENV_PATH}
+                    . .venv/bin/activate
                     pip install --upgrade pip
-                "
+                '''
             }
         }
         
         stage('Install Dependencies') {
             steps {
-                sh "
-                    . ${ACTIVATE_VENV_PATH}
+                sh '''
+                    . .venv/bin/activate
                     pip install -r requirements.txt
-                "
+                '''
             }
         }
 
         stage('Lint') {
             steps {
-                sh "
-                    . ${ACTIVATE_VENV_PATH}
+                sh '''
+                    . .venv/bin/activate
                     pylint *.py
-                "
+                '''
             }
         }
 
         stage('Tests') {
             steps {
-                sh "
-                    . ${ACTIVATE_VENV_PATH}
+                sh '''
+                    . .venv/bin/activate
                     pytest tests.py
-                "
+                '''
             }
         }
 
         stage('Run'){
             steps {
-                sh "
-                    . ${ACTIVATE_VENV_PATH}
+                sh '''
+                    . .venv/bin/activate
                     python main.py
-                "
+                '''
             }
         }
     }
